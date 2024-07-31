@@ -1,0 +1,111 @@
+{
+    "Verified": "Signed",
+    "Signatures": [
+        {
+            "Signing date": "12:54 AM 7/26/2012",
+            "Catalog": "C:\\Users\\Administrator\\Desktop\\Share\\NonTest\\wdfldr.sys",
+            "Signers": [
+                {
+                    "Signer": "Microsoft Windows",
+                    "Cert Status": "This certificate or one of the certificates in the certificate chain is not time valid., The revocation status of the certificate or one of the certificates in the certificate chain is unknown., Error 65536 (0x10000), The revocation status of the certificate or one of the certificates in the certificate chain is either offline or stale.",
+                    "Cert Issuer": "Microsoft Windows Verification PCA",
+                    "Valid from": "5:37 PM 3/26/2012",
+                    "Valid to": "5:37 PM 6/26/2013"
+                },
+                {
+                    "Signer": "Microsoft Windows Verification PCA",
+                    "Cert Status": "This certificate or one of the certificates in the certificate chain is not time valid.",
+                    "Cert Issuer": "Microsoft Root Certificate Authority",
+                    "Valid from": "5:55 PM 9/15/2005",
+                    "Valid to": "6:05 PM 3/15/2016"
+                },
+                {
+                    "Signer": "Microsoft Root Certificate Authority",
+                    "Cert Status": "This certificate or one of the certificates in the certificate chain is not time valid.",
+                    "Cert Issuer": "Microsoft Root Certificate Authority",
+                    "Valid from": "7:19 PM 5/9/2001",
+                    "Valid to": "7:28 PM 5/9/2021"
+                }
+            ],
+            "Counter Signers": [
+                {
+                    "Signer": "Microsoft Time-Stamp Service",
+                    "Cert Status": "This certificate or one of the certificates in the certificate chain is not time valid., The revocation status of the certificate or one of the certificates in the certificate chain is unknown., Error 65536 (0x10000), The revocation status of the certificate or one of the certificates in the certificate chain is either offline or stale.",
+                    "Cert Issuer": "Microsoft Time-Stamp PCA",
+                    "Valid from": "4:42 PM 7/25/2011",
+                    "Valid to": "4:42 PM 10/25/2012"
+                },
+                {
+                    "Signer": "Microsoft Time-Stamp PCA",
+                    "Cert Status": "This certificate or one of the certificates in the certificate chain is not time valid.",
+                    "Cert Issuer": "Microsoft Root Certificate Authority",
+                    "Valid from": "8:53 AM 4/3/2007",
+                    "Valid to": "9:03 AM 4/3/2021"
+                },
+                {
+                    "Signer": "Microsoft Root Certificate Authority",
+                    "Cert Status": "This certificate or one of the certificates in the certificate chain is not time valid.",
+                    "Cert Issuer": "Microsoft Root Certificate Authority",
+                    "Valid from": "7:19 PM 5/9/2001",
+                    "Valid to": "7:28 PM 5/9/2021"
+                }
+            ]
+        },
+        {
+            "Signing date": "12:54 AM 7/26/2012",
+            "Catalog": "C:\\Users\\Administrator\\Desktop\\Share\\NonTest\\wdfldr.sys",
+            "Signers": [
+                {
+                    "Signer": "Microsoft Windows",
+                    "Cert Status": "This certificate or one of the certificates in the certificate chain is not time valid.",
+                    "Cert Issuer": "Microsoft Windows Production PCA 2011",
+                    "Valid from": "4:55 PM 4/9/2012",
+                    "Valid to": "4:55 PM 7/9/2013"
+                },
+                {
+                    "Signer": "Microsoft Windows Production PCA 2011",
+                    "Cert Status": "Valid",
+                    "Cert Issuer": "Microsoft Root Certificate Authority 2010",
+                    "Valid from": "2:41 PM 10/19/2011",
+                    "Valid to": "2:51 PM 10/19/2026"
+                },
+                {
+                    "Signer": "Microsoft Root Certificate Authority 2010",
+                    "Cert Status": "Valid",
+                    "Cert Issuer": "Microsoft Root Certificate Authority 2010",
+                    "Valid from": "5:57 PM 6/23/2010",
+                    "Valid to": "6:04 PM 6/23/2035"
+                }
+            ],
+            "Counter Signers": [
+                {
+                    "Signer": "Microsoft Time-Stamp Service",
+                    "Cert Status": "This certificate or one of the certificates in the certificate chain is not time valid., The certificate or one of the certificates in the certificate chain does not have a valid signature., The revocation status of the certificate or one of the certificates in the certificate chain is unknown., The revocation status of the certificate or one of the certificates in the certificate chain is either offline or stale.",
+                    "Cert Issuer": "Microsoft Time-Stamp PCA 2010",
+                    "Valid from": "5:35 PM 1/9/2012",
+                    "Valid to": "5:45 PM 4/9/2013"
+                },
+                {
+                    "Signer": "Microsoft Time-Stamp PCA 2010",
+                    "Cert Status": "Valid",
+                    "Cert Issuer": "Microsoft Root Certificate Authority 2010",
+                    "Valid from": "5:36 PM 7/1/2010",
+                    "Valid to": "5:46 PM 7/1/2025"
+                },
+                {
+                    "Signer": "Microsoft Root Certificate Authority 2010",
+                    "Cert Status": "Valid",
+                    "Cert Issuer": "Microsoft Root Certificate Authority 2010",
+                    "Valid from": "5:57 PM 6/23/2010",
+                    "Valid to": "6:04 PM 6/23/2035"
+                }
+            ]
+        }
+    ],
+    "Company": "Microsoft Corporation",
+    "Description": "Kernel Mode Driver Framework Loader",
+    "Product": "Microsoft\u00ae Windows\u00ae Operating System",
+    "Prod version": "1.11.9200.16384",
+    "File version": "1.11.9200.16384 (win8_rtm.120725-1247)",
+    "SHA256": "87B1101530DB4709661557D449043776906E544604A724614F1628E0D1C202B5"
+}
