@@ -5,7 +5,7 @@
 This repository contains the source code for the system developed to enhance Windows kernel driver security during my master thesis.
 The system is designed to continuously gather, analyze, and evaluate Windows device drivers for potential vulnerabilities and present these results to security researchers in an efficient way.
 
-An export of my final presentation can be found at [FinalPresentation](./FinalPresentation.pdf) and the thesis at [MasterThesis](./MasterThesis.pdf).
+An export of my final presentation can be found at [FinalPresentation](./FinalPresentation.txt) and the thesis at [MasterThesis](./MasterThesis.txt).
 
 ## Motivation
 
