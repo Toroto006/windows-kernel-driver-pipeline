@@ -1,0 +1,253 @@
+//// Docs: https://dbml.dbdiagram.io/docs
+//// created with https://dbdiagram.io/d (https://dbdiagram.io/d/PipelineDatabase-660180ecae072629cee52008)
+
+// first export from https://dbdiagram.io/ as DDL, i.e., postgreSQL
+// remove the AS DEFAULT in the DDL
+// then https://github.com/xnuinside/omymodels to converty to models.py
+// then modify for flask_sqlalchemy, many to many relations, unique multi indexes...
+
+Table files {
+  id int [pk, increment]
+  path varchar [unique] // if empty, then then it was not worth keeping
+  filename varchar [not null] // the original file
+  size int [not null]
+  architecture arch // only windows executables have an architecture
+  
+  // Identifing hashes
+  sha256 varchar [not null, unique]
+  sha1 varchar
+  ssdeep varchar // optimization possible: https://www.virusbulletin.com/virusbulletin/2015/11/optimizing-ssdeep-use-scale
+
+  Indexes {
+    sha256
+    sha1
+    ssdeep
+  }
+}
+
+Enum arch {
+  IA64
+  AMD64
+  AMD32
+  ARM64
+  ARM32
+  ARM16
+}
+
+Enum tags {
+  known_vulnerable
+  not_vulnerable
+  vulnerable
+  poced
+  errored
+  unknown
+}
+
+Table signers {
+  id int [pk, increment]
+  
+  name varchar
+  cert_status varchar
+  cert_issuer varchar
+  valid_from timestamp
+  valid_to timestamp
+
+  Indexes {
+    (name, cert_issuer, valid_from, valid_to) [unique]
+  }
+}
+
+Table signatures {
+  id int [pk, increment]
+  sign_result int [ref: > signResults.id]
+  
+  signing_date timestamp
+  catalog varchar
+  signers int [ref: <> signers.id] 
+}
+
+Table signResults {
+  id int [pk, increment]
+  valid bool [default: false]
+
+  // signatures int [ref: < signatures.id]
+
+  verified varchar // Verified value in Certificate
+  company varchar // Company Name in Certificate
+  description varchar // Description in Certificate
+  product varchar // Product in Certificate
+  prod_version varchar // Product Version in Certificate
+  file_version varchar // File Version in Certificate
+
+  created_at timestamp [not null, note: 'When these results were generated'] 
+}
+
+Table functions {
+  id int [pk, increment]
+  name varchar [unique]
+  interesting int [default: 0] // to filter for interesting functions 
+
+  Indexes {
+    name
+  }
+}
+
+Table staticResults {
+  // anything statically found but not covered by cert or ida pathing
+  id int [pk, increment]
+  phys_mem bool
+  concat_dos_device_str varchar //concatenated dos device strings (full)
+  security_str varchar // not sure this makes sense either
+
+  imports int [ref: <> functions.id]
+  imphash varchar
+
+  created_at timestamp [not null, note: 'When these results were generated'] 
+}
+
+Table paths {
+  id int [pk, increment]
+  path varchar [not null] // list of addresses from start to target function
+  name varchar // name of the target
+  context varchar // context of the target
+
+  isfor int [ref: > pathResults.id, not null]
+
+  Indexes {
+    name
+  }
+}
+
+Enum handlerType {
+  WDM
+  WDF
+  unknown
+}
+
+Table pathResults {
+  // all IDA pathing check related results
+  id int [pk, increment]
+
+  ret_code int [not null]
+  type handlerType 
+  handler_addrs varchar // list of handler addresses
+  paths int [ref: < paths.id]
+  combined_sub_functions int // how many combinmed targets where found in any subfunction of the handler
+  ioctl_comp varchar // all ioctls that are compared in the handler
+
+  created_at timestamp [not null, note: 'When the script was run'] 
+}
+
+Enum fuzzState {
+  done
+  errored
+  running
+  queued
+}
+
+Table fuzzQueue {
+  id int [pk, increment]
+  priority int [default: 0, not null] // highest prio first
+  state fuzzState
+
+  driver int [ref: > drivers.id]
+  
+  dos_device_str varchar [not null] // just the part behind \\\\.\\
+  seeds int [ref: < fuzzPayload.id] //chosen payloads as seeds
+  max_runtime int [default: 43200] // max runtime in seconds
+  max_last_crash int // in seconds how long max to keep fuzzing if nothing found
+  max_last_any int // in seconds how long since any change in last
+
+  created_at timestamp [not null] 
+  finished_at timestamp // when this fuzz finished
+}
+
+Table fuzzPayload {
+  id int [pk, increment]
+  version varchar [not null] // incremental versioning bc of changes to the fuzzing harness
+
+  ioctl varchar
+  type varchar [not null] // crash, timeout, seed, manual, ...
+  payload varchar [not null] // base64 encoded binary blob
+ 
+  created_at timestamp [not null] 
+}
+
+Table fuzzingResults {
+  // connection entry for all Fuzzing result for this driver
+  id int [pk, increment]
+
+  payloads int [ref: < fuzzPayload.id] //all payloads
+ 
+  // summed up stats over all runs
+  runtime int // in seconds
+  total_execs int
+
+  // stats for last run
+  p_coll float // probability of collision for binary paths
+  total_reloads int 
+  paths_total int
+  bb_covered int // amount of basic blocks covered
+  
+  created_at timestamp [not null, note: 'When the last fuzzing was done for this driver'] 
+}
+
+Table notes {
+  id int [pk, increment, not null]
+  title varchar
+  content varchar
+  
+  isfor int [ref: > files.id]
+  created_at timestamp [not null, note: 'When was the note was created'] 
+}
+
+Table ogFiles {
+  id int [pk, increment]
+  origin varchar
+  file int [ref: - files.id, not null]
+  type varchar
+  extracted bool [default: false]
+
+  created_at timestamp [not null, note: 'When was the file downloaded'] 
+}
+
+Table drivers {
+  id int [pk, increment]
+  tag tags
+  file int [ref: - files.id, not null]
+
+  // all restuls of modules
+  static_results int [ref: - staticResults.id]
+  sign_results int [ref: - signResults.id]
+  path_results int [ref: - pathResults.id]
+  fuzzing_results int [ref: - fuzzingResults.id]
+
+  created_at timestamp [not null, note: 'When was this driver added']
+}
+
+Table extractions {
+  id int [pk, increment]
+  ogfile int [ref: - ogFiles.id, not null]
+  file int [ref: > files.id, not null] // how multi extractions??
+
+  created_at timestamp [not null, note: 'When was this extraction done'] // add column note
+
+  Indexes {
+    (ogfile, files) [unique]
+  }
+}
+
+Table knownVulnerableDrivers {
+  id int [pk, increment]
+
+  sha256 varchar
+  filename varchar
+  description varchar
+  origin varchar // Who said it was vulnerable, e.g., CVE, vendor, etc.
+ 
+  file int [ref: - files.id] // if we have the file reference it
+
+  Indexes {
+    (sha256, filename) [unique]
+  }
+}

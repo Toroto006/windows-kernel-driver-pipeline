@@ -1,0 +1,47 @@
+version: "3.8"
+
+services:
+  coordinator-db:
+    image: postgres:latest
+    restart: always
+    container_name: coordinator-db
+    environment:
+      POSTGRES_PASSWORD: secretTest1234
+      POSTGRES_DATABASE: pipeline
+      POSTGRES_USER: pipeline
+    volumes:
+      - ./storage/postgres:/var/lib/postgresql
+      - ./storage/postgres/data:/var/lib/postgresql/data
+    ports: # only for evaluation and debugging purpose
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U pipeline"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  coordinator:
+    container_name: coordinator
+    build: .
+    volumes:
+      - .:/app
+      - ./storage/files:/storage/files
+      - ./storage/uploads:/storage/uploads
+    ports:
+      - "5000:5000"
+    restart: unless-stopped
+    depends_on:
+      coordinator-db:
+        condition: service_healthy
+  
+  coordinator-db-admin:
+    container_name: coordinator-db-admin
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=user@test.com
+      - PGADMIN_DEFAULT_PASSWORD=test
+    ports:
+      - "5050:80"
+    depends_on:
+      coordinator-db:
+        condition: service_healthy
