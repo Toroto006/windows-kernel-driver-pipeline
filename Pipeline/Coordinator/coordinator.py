@@ -34,7 +34,7 @@ health_status = True
 
 from models import *
 #database_file = f"sqlite:///{DB_FILE}"
-database_file = f"postgresql://pipeline:secretTest1234@coordinator-db/pipeline"
+database_file = f"postgresql://pipeline:POSTGRES_PASSWORD@coordinator-db/pipeline"
 app.config["SQLALCHEMY_DATABASE_URI"] = database_file
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 #app.config["SQLALCHEMY_ECHO"] = True
