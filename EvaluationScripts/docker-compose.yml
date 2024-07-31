@@ -1,0 +1,8 @@
+services:  
+  evaluation:
+    build: .
+    restart: no
+    container_name: evaluation
+    volumes:
+      - .:/evaluation
+    
