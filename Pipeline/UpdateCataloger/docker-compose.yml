@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  update-cataloger:
+    build: .
+    volumes:
+      - ./:/catalogUpdater/
+    #ports:
+    #  - "5000:5000"
