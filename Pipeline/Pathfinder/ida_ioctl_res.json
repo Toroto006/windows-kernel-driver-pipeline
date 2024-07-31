@@ -1,0 +1,90 @@
+{
+    "ret_code": 200,
+    "handler_type": "WDM",
+    "handler_addrs": [
+      69868
+    ],
+    "target_paths": [
+      {
+        "path": [
+          69868,
+          70504,
+          70588
+        ],
+        "name": "MmMapIoSpace"
+      },
+      {
+        "path": [
+          69868,
+          70724,
+          70804
+        ],
+        "name": "MmMapIoSpace"
+      }
+    ],
+    "helper_paths": [
+      {
+        "path": [
+          69868,
+          70452,
+          70454
+        ],
+        "name": "__readmsr"
+      },
+      {
+        "path": [
+          69868,
+          70146
+        ],
+        "name": "__outbyte"
+      },
+      {
+        "path": [
+          69868,
+          70237
+        ],
+        "name": "__indword"
+      },
+      {
+        "path": [
+          69868,
+          70504,
+          70234,
+          70656
+        ],
+        "name": "qmemcpy"
+      },
+      {
+        "path": [
+          69868,
+          70246
+        ],
+        "name": "__inbyte"
+      },
+      {
+        "path": [
+          69868,
+          70452,
+          70454
+        ],
+        "name": "__readmsr"
+      },
+      {
+        "path": [
+          69868,
+          70504,
+          70133
+        ],
+        "name": "__outdword"
+      },
+      {
+        "path": [
+          69868,
+          70724,
+          70875
+        ],
+        "name": "qmemcpy"
+      }
+    ],
+    "ida_log": "Possible file format: MS-DOS executable (EXE) (C:\\Program Files\\IDA Pro 8.3\\loaders\\dos64.dll)\nPossible file format: Portable executable for AMD64 (PE) (C:\\Program Files\\IDA Pro 8.3\\loaders\\pe64.dll)\n\n  bytes   pages size description\n--------- ----- ---- --------------------------------------------\n   524288    64 8192 allocating memory for b-tree...\n    65536     8 8192 allocating memory for virtual array...\n   262144    32 8192 allocating memory for name pointers...\n-----------------------------------------------------------------\n   851968            total memory allocated\n\nLoading processor module C:\\Program Files\\IDA Pro 8.3\\procs\\pc64.dll for metapc...Initializing processor module metapc...OK\nAutoanalysis subsystem has been initialized.\nLoading file 'C:\\Windows\\Temp\\SysInfoDetectorProX64.sys' into database...\nDetected file format: Portable executable for AMD64 (PE)\n  0. Creating a new segment  (0000000000011000-0000000000012000) ... ... OK\n  1. Creating a new segment  (0000000000012000-0000000000013000) ... ... OK\n  2. Creating a new segment  (0000000000013000-0000000000014000) ... ... OK\n  3. Creating a new segment  (0000000000014000-0000000000015000) ... ... OK\n  4. Creating a new segment  (0000000000015000-0000000000016000) ... ... OK\nReading imports directory...\nReading exception directory (.pdata)...\n  5. Creating a new segment  (0000000000012058-0000000000013000) ... ... OK\nThe input file was linked with debug information\n and the symbol filename is:\n\"c:\\_work\\_projects\\sid_driver\\sys\\lib\\amd64\\SysInfoDetectorProX64.pdb\"\nDo you want to look for this file at the specified path\nand the Microsoft Symbol Server?\n -> ~Y~es\nPDB: using PDBIDA provider\nPDB: downloading http://msdl.microsoft.com/download/symbols/SysInfoDetectorProX64.pdb/DBEFB99EF7FA4761BF9A32B385A671371/SysInfoDetectorProX64.pdb => C:\\Users\\Administrator\\AppData\\Local\\Temp\\ida\\SysInfoDetectorProX64.pdb\\DBEFB99EF7FA4761BF9A32B385A671371\\SysInfoDetectorProX64.pdb\nPDB: HTTP error: A connection with the server could not be established  \nCould not find PDB file 'SysInfoDetectorProX64.pdb'.\nPlease check _NT_SYMBOL_PATH\nC:\\Windows\\Temp\\SysInfoDetectorProX64.sys: failed to load pdb info.\n\nDo you want to browse for the pdb file on disk? -> ~Y~es\nPlan  FLIRT signature: Windows Driver Kit 7/10 64bit\nPlan  FLIRT signature: Windows Driver Kit 7/10 64bit\nmain() function at 11008, named \"DriverEntry\"\nType library 'ntddk64_win7' loaded. Applying types...\nTypes applied to 11 names.\nPlan  FLIRT signature: SEH for vc64 7-14\nType library 'ntapi64_win7' loaded. Applying types...\nTypes applied to 0 names.\nMarking typical code sequences...\nFlushing buffers, please wait...ok\nFile 'C:\\Windows\\Temp\\SysInfoDetectorProX64.sys' has been successfully loaded into the database.\nHex-Rays Decompiler plugin has been loaded (v8.3.0.230608)\n  License: 55-388B-8A24-9B InfoGuard AG (1 user)\n  The hotkeys are F5: decompile, Ctrl-F5: decompile all.\n\n  Please check the Edit/Plugins menu for more information.\nHex-rays version 8.3.0.230608 has been detected, gooMBA plugin ready to use\nIDA is analysing the input file...\nYou may start to explore the input file right now.\nUsing FLIRT signature: Windows Driver Kit 7/10 64bit\nUsing FLIRT signature: Windows Driver Kit 7/10 64bit\nUsing FLIRT signature: SEH for vc64 7-14\nPropagating type information...\nFunction argument information has been propagated\nThe initial autoanalysis has been finished.\n[I]: 0x15064: analysis start at \"start\"\n[I]: 0x11008: [FUNC TYPE APPLIED (cdecl)] NTSTATUS __fastcall DriverEntry(_DRIVER_OBJECT * , PUNICODE_STRING );\nThe decompiler assumes that the segment '.idata' is read-only because of its NAME.\nAll data references to the segment will be replaced by constant values.\nThis may lead to drastic changes in the decompiler output.\nIf the segment is not read-only, please change the segment NAME.\n\nIn general, the decompiler checks the segment permissions, class, and name\nto determine if it is read-only.\n -> OK\n[S]: 0x11029: WDM IOCTL handler 0x110ec FOUND\n[I]: 0x110ec: [FUNC TYPE APPLIED (tinfo)] PDRIVER_DISPATCH\n[I]: 0x11334: [FUNC TYPE APPLIED (cdecl)] __int64 __fastcall fn_11334(int , struct _IRP * , ULONG , struct _IRP * , ULONG , __int64 );\n[I]: 0x11368: [FUNC TYPE APPLIED (cdecl)] __int64 __fastcall fn_11368(struct _IRP * , ULONG , struct _IRP * , ULONG , __int64 );\n[I]: 0x11444: [FUNC TYPE APPLIED (cdecl)] __int64 __fastcall fn_11444(struct _IRP * , ULONG , struct _IRP * , ULONG , __int64 );\n[S]: IOCTL handler addresses = ['0x110ec']\n[S]: Paths from the handlers to call target API FOUND:\nfn_ioctl_handler_wdm -> fn_path_1 -> MmMapIoSpace at 0x113bc\nfn_ioctl_handler_wdm -> fn_path_1_0 -> MmMapIoSpace at 0x11494\n[S]: Paths from the handlers to interesting helper instructions FOUND:\nfn_ioctl_handler_wdm -> fn_path_1_1 -> __readmsr at 0x11336\nfn_ioctl_handler_wdm -> __outbyte at 0x11202\nfn_ioctl_handler_wdm -> __indword at 0x1125d\nfn_ioctl_handler_wdm -> fn_path_1 -> qmemcpy at 0x11400\nfn_ioctl_handler_wdm -> __inbyte at 0x11266\nfn_ioctl_handler_wdm -> fn_path_1_1 -> __readmsr at 0x11336\nfn_ioctl_handler_wdm -> __outdword at 0x111f5\nfn_ioctl_handler_wdm -> fn_path_1_0 -> qmemcpy at 0x114db\n[I]: SysInfoDetectorProX64.sys: Done with status 200\n--------------------------------------------------\nUnloading IDP module C:\\Program Files\\IDA Pro 8.3\\procs\\pc64.dll..."
+  }
