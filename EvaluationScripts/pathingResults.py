@@ -11,7 +11,7 @@ import random
 import requests
 import json
 import numpy as np
-from scipy.stats import normaltest, mannwhitneyu, kstest
+from scipy.stats import mannwhitneyu, kstest
 
 COORDINATOR_BASE_URL = 'http://COORDINATOR_IP:5000'
 
@@ -71,65 +71,7 @@ evaluation_targets = [
     {'filename': 'SoftPerfectRAMDisk.sys', 'id': 4256, 'file': 13029, 'size': 251512, 'type': 'WDM'},
     {'filename': 'd104621c93213942b7b43d65b5d8d33e.bin', 'id': 368, 'file': 397, 'size': 24968, 'type': 'WDF'},
     {'filename': 'iomemory_vsl.sys', 'id': 6306, 'file': 99082, 'size': 907928, 'type': 'WDF'},
-    {'filename': 'amdsfhkmdf.sys', 'id': 10850, 'file': 219480, 'size': 156392, 'type': 'WDF'},
-    # # {'filename': 'ATSwpDrv.sys', 'id': 23696, 'file': 488571, 'size': 217856, 'type': 'WDM'},
-    # # {'filename': '7bdf418a65ec33ec8ff47e7de705a4e1.bin', 'id': 27, 'file': 30, 'size': 14664, 'type': 'WDM'},
-    # # {'filename': '0d5774527af6e30905317839686b449d.bin', 'id': 434, 'file': 473, 'size': 13480, 'type': 'WDM'},
-    # # {'filename': 'f8fe655b7d63dbdc53b0983a0d143028.bin', 'id': 1370, 'file': 1490, 'size': 13368, 'type': 'WDM'},
-    # # {'filename': 'dedd07993780d973c22c93e77ab69fa3.bin', 'id': 1552, 'file': 1687, 'size': 29368, 'type': 'WDM'},
-    # # {'filename': 'f4b2580cf0477493908b7ed81e4482f8.bin', 'id': 374, 'file': 404, 'size': 14648, 'type': 'WDM'},
-    # # {'filename': 'Malwarebytes_Anti-Exploit', 'id': 4223, 'file': 12996, 'size': 158640, 'type': 'WDM'},
-    # # {'filename': 'WiRwaDrv.sys', 'id': 626, 'file': 681, 'size': 20344, 'type': 'WDM'},
-    # # {'filename': '6ba44f6ab055d6827a3ba43b215a7e13.bin', 'id': 923, 'file': 1008, 'size': 24128, 'type': 'WDM'},
-    # # {'filename': 'SRVNET.SYS', 'id': 2853, 'file': 3199, 'size': 318976, 'type': 'WDM'},
-    # # {'filename': '7c5cc933d9601b78f963dbd40c95580962dd085a167cc597a3c8b43b564ac591', 'id': 4009, 'file': 12782, 'size': 34064, 'type': 'WDM'},
-    # # {'filename': 'CH368WDM', 'id': 30867, 'file': 582189, 'size': 17792, 'type': 'WDM'},
-    # # {'filename': 'AsusGIO.sys', 'id': 26, 'file': 29, 'size': 15232, 'type': 'WDM'},
-    # # {'filename': 'dpmconv.sys', 'id': 3577, 'file': 12347, 'size': 275504, 'type': 'WDF'},
-    # # {'filename': 'glpcisd.sys', 'id': 1866, 'file': 2079, 'size': 477728, 'type': 'WDF'},
-    # # {'filename': '7a16fca3d56c6038c692ec75b2bfee15.bin', 'id': 335, 'file': 362, 'size': 18640, 'type': 'WDM'},
-    # # {'filename': 'stdcdrv64.sys', 'id': 234, 'file': 255, 'size': 38192, 'type': 'WDF'},
-    # # {'filename': 'tkdac64.sys', 'id': 4181, 'file': 12954, 'size': 56448, 'type': 'WDM'},
-    # # {'filename': 'LoopLpt.sys', 'id': 1442, 'file': 1566, 'size': 43216, 'type': 'WDM'},
-    # # {'filename': '79b8119b012352d255961e76605567d6.bin', 'id': 1669, 'file': 1812, 'size': 14352, 'type': 'WDM'},
-    # # {'filename': 'NTIOLib.sys', 'id': 608, 'file': 660, 'size': 13776, 'type': 'WDM'},
-    # # {'filename': 'AmUStorU.sys', 'id': 25941, 'file': 523565, 'size': 150816, 'type': 'WDM'},
-    # # {'filename': 'SmSerl64.sys', 'id': 2628, 'file': 2963, 'size': 1227776, 'type': 'WDM'},
-    # # {'filename': '98583b2f2efe12d2a167217a3838c498.bin', 'id': 820, 'file': 895, 'size': 14440, 'type': 'WDM'},
-    # # {'filename': '2e887e52e45bba3c47ccd0e75fc5266f.bin', 'id': 1239, 'file': 1351, 'size': 14648, 'type': 'WDM'},
-    # # {'filename': 'RDWM1211.SYS', 'id': 20111, 'file': 459219, 'size': 390016, 'type': 'WDM'},
-    # # {'filename': 'CtiAIo64.sys', 'id': 4129, 'file': 12902, 'size': 34520, 'type': 'WDM'},
-    # # {'filename': 'HWiNFO_x64.SYS', 'id': 4002, 'file': 12774, 'size': 57936, 'type': 'WDM'},
-    # # {'filename': 'ca2000.sys', 'id': 32180, 'file': 609890, 'size': 33768, 'type': 'WDM'},
-    # # {'filename': 'aswVmm.sys', 'id': 3697, 'file': 12468, 'size': 224896, 'type': 'WDM'},
-    # # {'filename': 'fa3a3ce6f172f071f5fb52d8f580b293c40d7a06eaf451fd6a2f6ef9aa3673d6', 'id': 3796, 'file': 12568, 'size': 34192, 'type': 'WDM'},
-    # # {'filename': 'aa55dd14064cb808613d09195e3ba749.bin', 'id': 1650, 'file': 1792, 'size': 13416, 'type': 'WDM'},
-    # # {'filename': 'bc1eeb4993a601e6f7776233028ac095.bin', 'id': 942, 'file': 1028, 'size': 27904, 'type': 'WDM'},
-    # # {'filename': 'DDDriver.sys', 'id': 3917, 'file': 12689, 'size': 23760, 'type': 'WDM'},
-    # # {'filename': '790ccca8341919bb8bb49262a21fca0e.bin', 'id': 578, 'file': 628, 'size': 31376, 'type': 'WDM'},
-    # # {'filename': 'AmPeStor.sys', 'id': 30219, 'file': 579328, 'size': 134088, 'type': 'WDM'},
-    # # {'filename': 'c475c7d0f2d934f150b6c32c01479134.bin', 'id': 712, 'file': 776, 'size': 14440, 'type': 'WDM'},
-    # # {'filename': 'atillk64.sys', 'id': 1450, 'file': 1576, 'size': 13840, 'type': 'WDM'},
-    # # {'filename': 'e3fda6120dfa016a76d975fdab7954f6.bin', 'id': 1525, 'file': 1660, 'size': 21248, 'type': 'WDM'},
-    # # {'filename': '296bde4d0ed32c6069eb90c502187d0d.bin', 'id': 1680, 'file': 1825, 'size': 18640, 'type': 'WDM'},
-    # # {'filename': '5c5973d2caf86e96311f6399513ab8df.bin', 'id': 1368, 'file': 1488, 'size': 26752, 'type': 'WDM'},
-    # # {'filename': 'Driver7', 'id': 1503, 'file': 1635, 'size': 24376, 'type': 'WDM'},
-    # # {'filename': 'mlx4_bus.sys', 'id': 2545, 'file': 2879, 'size': 1131320, 'type': 'WDF'},
-    # # {'filename': 'c4f5619ce04d4bee38024d08513c77fd.bin', 'id': 866, 'file': 946, 'size': 38328, 'type': 'WDM'},
-    # # {'filename': 'clfsdrv.sys', 'id': 4177, 'file': 12950, 'size': 79648, 'type': 'WDM'},
-    # # {'filename': 'c996d7971c49252c582171d9380360f2.bin', 'id': 75, 'file': 79, 'size': 14840, 'type': 'WDM'},
-    # # {'filename': '76d1d4d285f74059f32b8ad19a146d0c.bin', 'id': 515, 'file': 558, 'size': 31160, 'type': 'WDM'},
-    # # {'filename': 'e4d192a13ebe846451d14c3017937d3bc2286b8e7dbc35e8897c398e313cd7b6', 'id': 3896, 'file': 12668, 'size': 83288, 'type': 'WDM'},
-    # # {'filename': 'RDWM1210.SYS', 'id': 20119, 'file': 459397, 'size': 390016, 'type': 'WDM'},
-    # # {'filename': 'GeneStor.sys', 'id': 20740, 'file': 469565, 'size': 200656, 'type': 'WDF'},
-    # # {'filename': 'de919b8d98be17729e6d5da701403200bf6bb9eaaa67e45323910f0c2b71d56c', 'id': 3758, 'file': 12529, 'size': 88496, 'type': 'WDM'},
-    # # {'filename': '5093f38d597532d59d4df9018056f0d1.bin', 'id': 1075, 'file': 1175, 'size': 30672, 'type': 'WDM'},
-    # # {'filename': 'qicflt.sys', 'id': 20003, 'file': 457973, 'size': 29800, 'type': 'WDM'},
-    # # {'filename': 'f34489c0f0d0a16b4db8a17281b57eba.bin', 'id': 1078, 'file': 1178, 'size': 13864, 'type': 'WDM'},
-    # # {'filename': '73bcec46db276370637f4d3b5219b08971317143dc3f8aab3e17ba34e3db122b', 'id': 3715, 'file': 12486, 'size': 49128, 'type': 'WDM'},
-    # # {'filename': '592065b29131af32aa18a9e546be9617.bin', 'id': 658, 'file': 714, 'size': 7168, 'type': 'WDM'},
-    # # {'filename': 'e5f8fcdfb52155ed4dffd8a205b3d091.bin', 'id': 795, 'file': 866, 'size': 199536, 'type': 'WDM'},
-    # # {'filename': 'stdcdrvws64.sys', 'id': 120, 'file': 130, 'size': 40448, 'type': 'WDM'}
+    {'filename': 'amdsfhkmdf.sys', 'id': 10850, 'file': 219480, 'size': 156392, 'type': 'WDF'}
 ]
 
 def createEvaluationTargetList():
