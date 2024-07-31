@@ -16,8 +16,6 @@ The primary script, [runAll.py](./runAll.py), orchestrates the execution of the 
 * Docker Compose
 
 ## Setup Instructions
-Clone the Repository
-
 1. Build and Run the Docker Containers
 Ensure you are in the this directory, where the docker-compose.yml file is located, then run:
 ```bash
