@@ -5,7 +5,7 @@
 This repository contains the source code for the system developed to enhance Windows kernel driver security during my master thesis.
 The system is designed to continuously gather, analyze, and evaluate Windows device drivers for potential vulnerabilities and present these results to security researchers in an efficient way.
 
-An export of my final presentation can be found at [FinalPresentation](./FinalPresentation.pdf), whereas the thesis itself is [here](./MasterThesis.pdf).
+An export of my final presentation can be found at [FinalPresentation](./FinalPresentation.pdf) and the thesis at [MasterThesis](./MasterThesis.pdf).
 
 ## Motivation
 
@@ -27,7 +27,7 @@ The solution implemented in this thesis involves a system that:
 3. **Prioritization**: Highlights the most likely vulnerable drivers for researchers to focus on.
 
 The system has processed over 27,000 drivers during the time of the thesis.
-140 were manually reviewed, resulting in the identification of 14 unique drivers with 28 vulnerabilities --- four of which were already published, and ten were previously unknown.
+140 were manually reviewed, resulting in the identification of 14 unique drivers with 28 vulnerabilities - four of which were already published, and ten were previously unknown.
 
 ## Repository Contents
 
@@ -43,5 +43,6 @@ Contributions are welcome. Please follow the guidelines outlined in [CONTRIBUTIN
 
 ## License
 
-This project is licensed under the GPLv3 License whereever possible. See the [LICENSE](./LICENSE) file for details.
-Some parts of this work are further under the MIT License because previous work on which these parts are based on are under MIT.
+This project is licensed under the GPLv3 License where applicable.
+For more details, refer to the [LICENSE](./LICENSE) file.
+Additionally, some components are licensed under the MIT License due to their reliance on prior work that was released under MIT.
